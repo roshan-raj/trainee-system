@@ -1,10 +1,6 @@
 # Trainee Management System
 > Website for trainee to track their performance and attandance updated by their coordinators
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
-
 Website for trainee to track their performance and attandance updated by their coordinators.
 
 ## Installation
@@ -36,7 +32,7 @@ nodemon server.js
 
 ## Meta
 
-Roshan Raj – [@_roshan_raj](https://twitter.com/_roshan_raj) – roshan139154@gmail.com
+Roshan Raj [Twitter](https://twitter.com/_roshan_raj)  – [LinkedIn](linkedin.com/in/roshan139154/) – roshan139154@gmail.com
 
 
 [https://github.com/roshan-raj/trainee-system](https://github.com/roshan-raj/trainee-system)

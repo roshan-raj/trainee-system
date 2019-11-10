@@ -1,7 +1,7 @@
 ## Quick Start
 
 ```javascript
-// Install dependencies for server & client
+// Install dependencies 
 npm install 
 
 // App runs on http://localhost:8080

@@ -32,7 +32,7 @@ nodemon server.js
 
 ## Meta
 
-Roshan Raj [Twitter](https://twitter.com/_roshan_raj)  – [LinkedIn](linkedin.com/in/roshan139154/) – roshan139154@gmail.com
+Roshan Raj [Twitter](https://twitter.com/_roshan_raj)  – [LinkedIn](https://www.linkedin.com/in/roshan139154/) – roshan139154@gmail.com
 
 
 [https://github.com/roshan-raj/trainee-system](https://github.com/roshan-raj/trainee-system)

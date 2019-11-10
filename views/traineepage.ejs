@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/freelancer.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+    <link rel="stylesheet" href="css/traineepage.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Hello Trainee</title>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Torry Harris Integration Solution</a>
+        </div>
+    </nav>
+
+    <header class="masthead bg-primary text-white text-center">
+
+        <div class="container d-flex">
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'welcome')" id="defaultOpen">Welcome</button>
+                <button class="tablinks" onclick="openCity(event, 'personal')">Personal Details</button>
+                <button class="tablinks" onclick="openCity(event, 'other')">Other Details</button>
+                <button class="tablinks" onclick="openCity(event, 'marks')">Marks</button>
+                <button class="tablinks" onclick="openCity(event, 'attandance')">Attandance</button>
+                <button class="tablinks" onclick="openCity(event, 'logout')">Settings</button>
+            </div>
+            <div id="welcome" class="tabcontent">
+                <h3>Welcome</h3>
+                <p>Hello, <%= employee.name %>. Welome to Torry Harris Integration Solution</p>
+                <div class="card">
+                    <p class="title">Associate Software Engineer Trainee</p>
+                    <p> <b>Manager</b> : Shine Ravindra Panicker</p>
+                    <p><b>Employee ID</b> : <%= employee.empid; %> </p>
+                    <p><b>Bootcamp</b> - 82</p>
+                    <p><b>Location</b> : Global Village- Right Wing, Bangalore</p>
+                    <div style="margin: 15px 0;">
+                        <a href="<%= employee.social.twitter %>"><i class="fa fa-twitter"></i></a>
+                        <a href="<%= employee.social.linkedin %>"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="personal" class="tabcontent">
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="sc-edprofile">
+                            <h1>Edit Profile Form</h1>
+                            <div class="sc-container">
+                                <input type="text" id="clname" placeholder="College Name" />
+                                <input type="number" name="colper" id="colper" placeholder="College CGPA/Percent" />
+                                <input type="text" id="uniname" placeholder="Pre University College" />
+                                <input type="number" name="uniper" id="uniper" placeholder="PU CGPA/Percentage" />
+                                <input type="text" id="schname" placeholder="School Name" />
+                                <input type="number" name="schper" id="schper" placeholder="School CGPA/Percentage" />
+                                <input type="text" id="pan" placeholder="PAN Number" />
+                                <input type="text" id="aadhaar" placeholder="Aadhaar Number" />
+                                <input type="text" id="twitter" placeholder="Twitter Profile URL" />
+                                <input type="text" id="linkedin" placeholder="LinkedIn Profile URL" />
+                                <input type="submit" id="updateProfile" value="Register" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <h3>Personal Details</h3>
+                    <!-- Icon Divider -->
+                    <div class="divider-custom divider-dark">
+                        <div class="divider-custom-line"></div>
+                    </div>
+                    <div class="row" style="text-align: justify;">
+                        <div class="col-sm">
+                            <p><label><b>College Name: </b></label> <%= employee.college.name %> </p>
+
+                            <p><label><b>Percentage/CGPA:</b> </label> <%= employee.college.percentage %> </p>
+                            <p>
+                                <label"><b>P U College Name:</b> </label> <%= employee.university.name %>
+                            </p>
+                            <p><label><b>Percentage/CGPA:</b> </label>
+                                <%= employee.university.percentage %> </p>
+                            <p><label><b>School Name:</b> </label> <%= employee.school.name %> </p>
+                            <p><label><b>Percentage/CGPA: </b></label> <%= employee.school.percentage %> </p>
+                        </div>
+                        <div class="col-sm">
+                            <p><label><b>Phone : </b></label> <%= employee.phone %></p>
+                            <p><label><b>Email Id: </b></label> <%= employee.email %> </p>
+                        </div>
+                    </div>
+                </div>
+                <button id="myBtn" class="btn btn-success btn-sm">Update Profile</button>
+            </div>
+
+            <div id="marks" class="tabcontent">
+                <h3>Performance</h3>
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-dark">
+                    <div class="divider-custom-line"></div>
+                </div>
+                <p style="display:none;" id="java"> <%= employee.marks.java %> </p>
+                <p style="display:none;" id="sql"> <%= employee.marks.sql %> </p>
+                <p style="display:none;" id="unix"> <%= employee.marks.unix %> </p>
+                <p style="display:none;" id="web"> <%= employee.marks.web %> </p>
+                <div class="chart-container">
+                    <canvas id="marksChart"></canvas>
+                </div>
+            </div>
+
+            <div id="attandance" class="tabcontent">
+                <h3>Attandance</h3>
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-dark">
+                    <div class="divider-custom-line"></div>
+                </div>
+                <p>Available Leaves and Attandance will be shown here</p>
+            </div>
+
+            <div id="other" class="tabcontent">
+                <h3>PAN</h3>
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-dark">
+                    <div class="divider-custom-line"></div>
+                </div>
+                <p>PAN, Aadhaar Details etc . . .</p>
+            </div>
+
+            <div id="logout" class="tabcontent">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h3>Change Password</h3>
+                            <input type="text" id="_id" name="_id" value="<%= employee._id %>" style="display: none;">
+                            <input type="text" id="empid" name="empid" disabled value="<%= employee.empid %>">
+                            <input type="password" id="temp" name="temp" placeholder="Enter Password">
+                            <input type="password" id="pass" name="pass" placeholder="Confirm Password">
+                            <input type="submit" class="btn btn-warning btn-lg" id="changePassword"
+                                name="changePassword" value="Confirm">
+                        </div>
+                        <div class="col-sm">
+                            <h3>Good Bye, See You Soon</h3>
+                            <a href="/logout" class="btn btn-info btn-lg"> Log out </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <section class="copyright py-4 text-center text-white">
+        <div class="container">
+            <small>Copyright &copy; Marshmallow</small>
+        </div>
+    </section>
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+
+    <!-- Chart for Marks -->
+    <script>
+        $(document).ready(function () {
+            $("#changePassword").click(function () {
+                $.ajax({
+                    type: 'PUT',
+                    url: "http://localhost:8080/changePassword/" + $("#_id").val(),
+                    data: {
+                        temppass: $("#temp").val(),
+                        password: $("#pass").val(),
+                    },
+                    success: function (data) {
+                        alert("Password Changed");
+                    },
+                    error: function (errorMessage) {
+                        alert($("#_id").val());
+                        alert("Error", errorMessage);
+                    }
+                });
+                return false;
+            });
+
+            $("#updateProfile").click(function () {
+                $.ajax({
+                    type: 'PUT',
+                    url: "http://localhost:8080/updateProfile/" + $("#_id").val(),
+                    data: {
+                        collegename: $("#clname").val(),
+                        collegeper: $("#colper").val(),
+                        universityname: $("#uniname").val(),
+                        universityper: $("#uniper").val(),
+                        schoolname: $("#schname").val(),
+                        schoolper: $("#schper").val(),
+                        pan: $("#pan").val(),
+                        aadhaar: $("#aadhaar").val(),
+                        twitter: $("#twitter").val(),
+                        linkedin: $("#linkedin").val(),
+                    },
+                    success: function (data) {
+                        alert("Profile Updated!");
+                    },
+                    error: function (errorMessage) {
+                        alert($("#_id").val());
+                        alert("Error", errorMessage);
+                    }
+                });
+                return false;
+            });
+
+            var java = $("#java").html();
+            var sql = $("#sql").html();
+            var unix = $("#unix").html();
+            var web = $("#web").html();
+
+            var ctx = document.getElementById('marksChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['JAVA', 'SQL', 'UNIX', 'WEB-TECH'],
+                    datasets: [{
+                        label: 'Marks Secured',
+                        data: [java, sql, unix, web],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/freelancer.min.js"></script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

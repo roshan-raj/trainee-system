@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <title>Manager Page</title>
+</head>
+
+<body>
+    <input type="text" id="_id" name="_id" value="<%= employee._id %>" style="display: none;">
+    <input type="text" id="empid" name="empid" disabled value="<%= employee.empid %>">
+    <input type="text" id="temp" name="temp" placeholder="Enter Password">
+    <input type="text" id="pass" name="pass" placeholder="Confirm Password">
+    <input type="submit" id="changePassword" name="changePassword" value="Change Password">
+    <h1><%= employee.name %></h1>
+    <script>
+        $(document).ready(function () {
+            $("#changePassword").click(function () {
+                $.ajax({
+                    type: 'PUT',
+                    url: "http://localhost:8080/changePassword/" + $("#_id").val(),
+                    data: {
+                        temppass: $("#temp").val(),
+                        password: $("#pass").val(),
+                    },
+                    success: function (data) {
+                        alert("Password Changed");
+                    },
+                    error: function (errorMessage) {
+                        alert($("#_id").val());
+                        alert("Error", errorMessage);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>

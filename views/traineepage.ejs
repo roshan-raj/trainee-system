@@ -56,19 +56,19 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <div id="sc-edprofile">
-                            <h1>Edit Profile Form</h1>
+                            <h1>Update Profile</h1>
                             <div class="sc-container">
-                                <input type="text" id="clname" placeholder="College Name" />
-                                <input type="number" name="colper" id="colper" placeholder="College CGPA/Percent" />
-                                <input type="text" id="uniname" placeholder="Pre University College" />
-                                <input type="number" name="uniper" id="uniper" placeholder="PU CGPA/Percentage" />
-                                <input type="text" id="schname" placeholder="School Name" />
-                                <input type="number" name="schper" id="schper" placeholder="School CGPA/Percentage" />
-                                <input type="text" id="pan" placeholder="PAN Number" />
-                                <input type="text" id="aadhaar" placeholder="Aadhaar Number" />
-                                <input type="text" id="twitter" placeholder="Twitter Profile URL" />
-                                <input type="text" id="linkedin" placeholder="LinkedIn Profile URL" />
-                                <input type="submit" id="updateProfile" value="Register" />
+                                <input type="text" id="clname" value="<%= employee.college.name %>" placeholder="College Name" />
+                                <input type="number" name="colper" id="colper" value="<%= employee.college.percentage %>" placeholder="College CGPA/Percent" />
+                                <input type="text" id="uniname" value="<%= employee.university.name %>" placeholder="Pre University College" />
+                                <input type="number" name="uniper" id="uniper" value="<%= employee.university.percentage %>" placeholder="PU CGPA/Percentage" />
+                                <input type="text" id="schname" value="<%= employee.school.name %>" placeholder="School Name" />
+                                <input type="number" name="schper" id="schper" value="<%= employee.school.percentage %>" placeholder="School CGPA/Percentage" />
+                                <input type="text" id="pan" value="<%= employee.proofs.pan %>" placeholder="PAN Number" />
+                                <input type="text" id="aadhaar" value="<%= employee.proofs.aadhaar %>" placeholder="Aadhaar Number" />
+                                <input type="text" id="twitter" value="<%= employee.social.twitter %>" placeholder="Twitter Profile URL" />
+                                <input type="text" id="linkedin" value="<%= employee.social.linkedin %>" placeholder="LinkedIn Profile URL" />
+                                <input type="submit" id="updateProfile" value="Update" />
                             </div>
                         </div>
                     </div>

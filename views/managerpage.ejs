@@ -5,17 +5,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/freelancer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <title>Manager Page</title>
+    <link rel="stylesheet" href="css/managerpage.css">
+    <title>Hello Manager</title>
+
 </head>
 
 <body>
-    <input type="text" id="_id" name="_id" value="<%= employee._id %>" style="display: none;">
-    <input type="text" id="empid" name="empid" disabled value="<%= employee.empid %>">
-    <input type="text" id="temp" name="temp" placeholder="Enter Password">
-    <input type="text" id="pass" name="pass" placeholder="Confirm Password">
-    <input type="submit" id="changePassword" name="changePassword" value="Change Password">
-    <h1><%= employee.name %></h1>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Torry Harris Integration Solution</a>
+        </div>
+    </nav>
+
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex">
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'welcome')" id="defaultOpen">Welcome</button>
+                <button class="tablinks" onclick="openCity(event, 'performance')">Performance</button>
+                <button class="tablinks" onclick="openCity(event, 'leave')">Leave Requests</button>
+                <button class="tablinks" onclick="openCity(event, 'yellowbook')">Yellow Pages</button>
+                <button class="tablinks" onclick="openCity(event, 'logout')">Settings</button>
+            </div>
+            <div id="welcome" class="tabcontent">
+                <h3>Welcome</h3>
+                <p>Hello, <%= employee.name %>. Welome to Torry Harris Integration Solution</p>
+                <div class="card">
+                    <p><b>Employee ID</b> : <%= employee.empid; %> </p>
+                    <p><b>Bootcamp</b> - 82</p>
+                    <p><b>Location</b> : Global Village- Right Wing, Bangalore</p>
+                    <div style="margin: 15px 0;">
+                        <a href="<%= employee.social.twitter %>"><i class="fa fa-twitter"></i></a>
+                        <a href="<%= employee.social.linkedin %>"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="performance" class="tabcontent">
+                <h3>Performance</h3>
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-dark">
+                    <div class="divider-custom-line"></div>
+                </div>
+                <input type="text" id="PerformanceInput" onkeyup="PerformanceFunction()"
+                    placeholder="Search for names..">
+                <div style="overflow-x:auto; overflow-y: auto;">
+                    <table id="performanceTable">
+                        <tr class="performanceHeader">
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>JAVA</th>
+                            <th>UNIX</th>
+                            <th>SQL</th>
+                            <th>WEB-TECHNOLOGY</th>
+                        </tr>
+                        <% for(var i=0; i<trainee.length; i++) { %>
+                        <tr>
+                            <td><%= trainee[i].empid %></td>
+                            <td><%= trainee[i].name %></td>
+                            <td><%= trainee[i].marks.java %></td>
+                            <td><%= trainee[i].marks.unix %></td>
+                            <td><%= trainee[i].marks.sql %></td>
+                            <td><%= trainee[i].marks.web %></td>
+                        </tr>
+                        <% } %>
+                    </table>
+                </div>
+            </div>
+
+            <div id="leave" class="tabcontent">
+                <h3>Leave Requests</h3>
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-dark">
+                    <div class="divider-custom-line"></div>
+                </div>
+                <p>New Leave Request will be shown here</p>
+            </div>
+
+            <div id="yellowbook" class="tabcontent">
+                <h3>Yellow Pages</h3>
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-dark">
+                    <div class="divider-custom-line"></div>
+                </div>
+                <input type="text" id="YellowInput" onkeyup="YellowFunction()" placeholder="Search for names..">
+                <div style="overflow-x:auto; overflow-y: auto;">
+                    <table id="yellowTable">
+                        <tr class="yellowHeader">
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                        </tr>
+                        <% for(var i=0; i<trainee.length; i++) { %>
+                        <tr>
+                            <td><%= trainee[i].empid %></td>
+                            <td><%= trainee[i].name %></td>
+                            <td><%= trainee[i].phone %></td>
+                            <td><%= trainee[i].email %></td>
+                        </tr>
+                        <% } %>
+                    </table>
+                </div>
+            </div>
+
+            <div id="logout" class="tabcontent">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h3>Change Password</h3>
+                            <input type="text" id="_id" name="_id" value="<%= employee._id %>" style="display: none;">
+                            <input type="text" id="empid" name="empid" disabled value="<%= employee.empid %>">
+                            <input type="password" id="temp" name="temp" placeholder="Enter Password">
+                            <input type="password" id="pass" name="pass" placeholder="Confirm Password">
+                            <input type="submit" class="btn btn-warning btn-lg" id="changePassword"
+                                name="changePassword" value="Confirm">
+                        </div>
+                        <div class="col-sm">
+                            <h3>Good Bye, See You Soon</h3>
+                            <a href="/logout" class="btn btn-info btn-lg"> Log out </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <section class="copyright py-4 text-center text-white">
+        <div class="container">
+            <small>Copyright &copy; Marshmallow</small>
+        </div>
+    </section>
+
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
     <script>
         $(document).ready(function () {
             $("#changePassword").click(function () {
@@ -38,6 +180,58 @@
             });
         });
     </script>
+    <script>
+        function PerformanceFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("PerformanceInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("performanceTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function YellowFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("YellowInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("yellowTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+    </script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/freelancer.min.js"></script>
 </body>
 
 </html>

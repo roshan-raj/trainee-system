@@ -58,8 +58,9 @@ module.exports = function (app, passport) {
                 employee: req.user
             });
         } else {
-            res.render('managerpage.ejs', {
-                employee: req.user
+            Employee.find({ "designation": "Trainee" }, { "_id": 0, "name": 1, "empid": 1, "email": 1, "phone": 1, "marks.java": 1, "marks.sql": 1, "marks.unix": 1, "marks.web": 1 }, (err, result) => {
+                if (err) return console.log(err)
+                res.render('managerpage.ejs', { trainee: result, employee: req.user })
             });
         }
     });

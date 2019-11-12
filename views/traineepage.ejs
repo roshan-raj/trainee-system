@@ -58,16 +58,26 @@
                         <div id="sc-edprofile">
                             <h1>Update Profile</h1>
                             <div class="sc-container">
-                                <input type="text" id="clname" value="<%= employee.college.name %>" placeholder="College Name" />
-                                <input type="number" name="colper" id="colper" value="<%= employee.college.percentage %>" placeholder="College CGPA/Percent" />
-                                <input type="text" id="uniname" value="<%= employee.university.name %>" placeholder="Pre University College" />
-                                <input type="number" name="uniper" id="uniper" value="<%= employee.university.percentage %>" placeholder="PU CGPA/Percentage" />
-                                <input type="text" id="schname" value="<%= employee.school.name %>" placeholder="School Name" />
-                                <input type="number" name="schper" id="schper" value="<%= employee.school.percentage %>" placeholder="School CGPA/Percentage" />
-                                <input type="text" id="pan" value="<%= employee.proofs.pan %>" placeholder="PAN Number" />
-                                <input type="text" id="aadhaar" value="<%= employee.proofs.aadhaar %>" placeholder="Aadhaar Number" />
-                                <input type="text" id="twitter" value="<%= employee.social.twitter %>" placeholder="Twitter Profile URL" />
-                                <input type="text" id="linkedin" value="<%= employee.social.linkedin %>" placeholder="LinkedIn Profile URL" />
+                                <input type="text" id="clname" value="<%= employee.college.name %>"
+                                    placeholder="College Name" />
+                                <input type="number" name="colper" id="colper"
+                                    value="<%= employee.college.percentage %>" placeholder="College CGPA/Percent" />
+                                <input type="text" id="uniname" value="<%= employee.university.name %>"
+                                    placeholder="Pre University College" />
+                                <input type="number" name="uniper" id="uniper"
+                                    value="<%= employee.university.percentage %>" placeholder="PU CGPA/Percentage" />
+                                <input type="text" id="schname" value="<%= employee.school.name %>"
+                                    placeholder="School Name" />
+                                <input type="number" name="schper" id="schper" value="<%= employee.school.percentage %>"
+                                    placeholder="School CGPA/Percentage" />
+                                <input type="text" id="pan" value="<%= employee.proofs.pan %>"
+                                    placeholder="PAN Number" />
+                                <input type="text" id="aadhaar" value="<%= employee.proofs.aadhaar %>"
+                                    placeholder="Aadhaar Number" />
+                                <input type="text" id="twitter" value="<%= employee.social.twitter %>"
+                                    placeholder="Twitter Profile URL" />
+                                <input type="text" id="linkedin" value="<%= employee.social.linkedin %>"
+                                    placeholder="LinkedIn Profile URL" />
                                 <input type="submit" id="updateProfile" value="Update" />
                             </div>
                         </div>
@@ -80,7 +90,7 @@
                     <div class="divider-custom divider-dark">
                         <div class="divider-custom-line"></div>
                     </div>
-                    <div class="row" style="text-align: justify;">
+                    <div class="row" style="text-align: left;">
                         <div class="col-sm">
                             <p><label><b>College Name: </b></label> <%= employee.college.name %> </p>
 
@@ -274,9 +284,9 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Custom scripts for this template -->
     <script src="js/freelancer.min.js"></script>
+
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");

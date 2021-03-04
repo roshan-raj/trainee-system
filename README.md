@@ -7,8 +7,6 @@ Website for trainee to track their performance and attandance updated by their c
 
 OS X & Linux & Windows:
 
-[Live Demo Here](https://ancient-forest-59951.herokuapp.com/)
-
 ```sh
 npm install 
 ```
